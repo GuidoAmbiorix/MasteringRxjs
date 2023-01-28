@@ -1,0 +1,18 @@
+<div class="container">
+  <section class="details">
+    <h2>PostsDetails</h2>
+    <div class="links">
+      <a mat-raised-button
+      [class]="{active: post.id == (selectedPost$ | async)?.id}"
+      (click)="onSelectPost(post.id)"
+      *ngFor="let post of posts$ | async">
+
+        {{post.title}}({{post.categoryName}})
+      </a>
+    </div>
+  </section>
+
+  <section class="sidedetails">
+    <app-single-post></app-single-post>
+  </section>
+</div>
