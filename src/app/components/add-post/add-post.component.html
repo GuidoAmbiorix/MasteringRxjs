@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>Add Post</h1>
+
+  <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Category</mat-label>
+      <mat-select formControlName="categoryId">
+        <mat-option [value]="category.id" *ngFor="let category of categories$ | async">{{category.title}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <button mat-raised-button><mat-icon>add</mat-icon>Add Post</button>
+  </form>
+</div>
+
