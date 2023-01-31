@@ -18,6 +18,7 @@ import { AltPostsComponent } from './pages/alt-posts/alt-posts.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
+import { RegistroPreIndexComponent } from './pages/registro-pre-index/registro-pre-index.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AddPostComponent } from './components/add-post/add-post.component';
     SinglePostComponent,
     LoadingComponent,
     AddPostComponent,
+    RegistroPreIndexComponent,
   ],
   imports: [
     BrowserModule,

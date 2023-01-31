@@ -1,3 +1,4 @@
+import { RegistroPreIndexComponent } from './pages/registro-pre-index/registro-pre-index.component';
 import { AltPostsComponent } from './pages/alt-posts/alt-posts.component';
 import { DeclarativePostsComponent } from './pages/declarative-posts/declarative-posts.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -9,7 +10,8 @@ const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'posts',component:PostsComponent},
   {path:'declarativeposts',component:DeclarativePostsComponent},
-  {path:'altposts',component:AltPostsComponent}
+  {path:'altposts',component:AltPostsComponent},
+  {path:'registropre',component:RegistroPreIndexComponent}
 ];
 
 @NgModule({

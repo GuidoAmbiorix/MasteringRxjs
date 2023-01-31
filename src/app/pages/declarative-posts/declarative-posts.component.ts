@@ -4,7 +4,7 @@ import { DeclarativeCategoryService } from './../../services/declarative-categor
 import { DeclarativePostService } from './../../services/declarative-post.service';
 import { Component, ChangeDetectionStrategy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { map, combineLatest, BehaviorSubject, tap, delay, Subject, pipe } from 'rxjs';
+import { map, combineLatest, BehaviorSubject, tap, delay, Subject, pipe, mergeMap, merge, scan } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -21,8 +21,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   changeDetection:ChangeDetectionStrategy.OnPush,
 })
 export class DeclarativePostsComponent implements OnInit {
-  selectedCategorySubject = new BehaviorSubject<string>('');
-  selectedCategoryAction$ = this.selectedCategorySubject.asObservable();
+  selectedFilterChangeSubject = new BehaviorSubject<string>('');
+  selectedFilterChangeAction$ = this.selectedFilterChangeSubject.asObservable();
 
   selectedDescriptionIdSubject = new BehaviorSubject<string>('');
   selectedDescriptionIdAction$ = this.selectedDescriptionIdSubject.asObservable();
@@ -34,11 +34,12 @@ export class DeclarativePostsComponent implements OnInit {
   categories$ = this.categoryService.categories$;
 
 
-filteredPosts$ = combineLatest([this.posts$,this.selectedCategoryAction$,this.selectedDescriptionIdAction$])
+filteredPosts$ = combineLatest([this.posts$,this.selectedFilterChangeAction$,this.selectedDescriptionIdAction$])
 .pipe(
   map(([posts,categorySelectedId,descriptionId]) =>{
   return posts.filter(post =>
-    categorySelectedId ? post.categoryId == categorySelectedId : descriptionId ? post.id == descriptionId:true
+    categorySelectedId ? post.categoryId == categorySelectedId:true &&
+    descriptionId ? post.id == descriptionId:true
     )
 }),
 tap(data =>{
@@ -48,11 +49,12 @@ tap(data =>{
 
   onCategoryChange(event:string){
   let selectedCategoryId = event
-  this.selectedCategorySubject.next(selectedCategoryId);
+  this.selectedFilterChangeSubject.next(selectedCategoryId);
   }
 
   onDescriptionChange(event:string){
   let selectedDescription = event;
+  console.log(event);
   this.selectedDescriptionIdSubject.next(selectedDescription);
   }
 
@@ -70,7 +72,8 @@ tap(data =>{
   this.selectedIdRowSubject.next(idRow.id);
   }
 
-  displayedColumns: string[] = ['actions','id', 'title', 'categoryName', 'description',];
+  displayedColumns: string[] = ['actions','title', 'categoryName', 'description',];
+  displayedColumnsDetails: string[] = ['title', 'categoryName', 'description',];
   dataSource:any = this.filteredPosts$;
   expandedElement:IPost[] = [];
 

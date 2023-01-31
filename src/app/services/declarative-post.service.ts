@@ -10,7 +10,7 @@ import { DeclarativeCategoryService } from './declarative-category.service';
 })
 export class DeclarativePostService {
 
-  constructor(private  http:HttpClient,private categoryService:DeclarativeCategoryService) { }
+  constructor(private http:HttpClient,private categoryService:DeclarativeCategoryService) { }
 
 
   handleError(error:Error){
