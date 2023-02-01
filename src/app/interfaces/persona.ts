@@ -4,4 +4,5 @@ export interface Persona {
   apellido:string;
   sexo:string;
   idcargo:string;
+  cedula:string;
 }

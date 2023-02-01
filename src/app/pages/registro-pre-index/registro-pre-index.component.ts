@@ -1,3 +1,5 @@
+import { AsignarCargosComponent } from './../../components/asignar-cargos/asignar-cargos.component';
+import { MatDialog } from '@angular/material/dialog';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { DeclarativeRegistroPreService } from './../../services/declarative-registro-pre.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,31 +18,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistroPreIndexComponent implements OnInit{
 
+  constructor(private registroPreService:DeclarativeRegistroPreService,private dialog:MatDialog){}
 
+  ngOnInit(): void {}
 
-  constructor(private registroPreService:DeclarativeRegistroPreService){}
 
   procedencia$ = this.registroPreService.procedencia$;
   cargo$ = this.registroPreService.cargos$;
 
-  ngOnInit(): void {
-
-
-  }
-
   displayedColumns: string[] = ['acciones','provincia', 'municipio', 'circunscripcion', 'distritoMunicipal'];
   dataSource:any = this.procedencia$;
-
 
   displayedColumnsDetails: string[] = ['cargo','cedula','nombre','apellido','sexo','acciones'];
   dataSourceDetails:any = this.cargo$;
 
   toggleRow(element: { expanded: boolean; }) {
-    // Uncommnet to open only single row at once
-    // ELEMENT_DATA.forEach(row => {
-    //   row.expanded = false;
-    // })
     element.expanded = !element.expanded
+  }
+
+  onAsignarCargoDialog(){
+  this.dialog.open(AsignarCargosComponent,{
+    width : '15%',
+    height : '50%'
+  })
   }
 
 }

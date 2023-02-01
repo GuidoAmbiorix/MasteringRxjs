@@ -1,0 +1,30 @@
+
+<div class="container">
+  <h1>Asignar cargo</h1>
+  <form [formGroup]="asignarForm" (ngSubmit)="AsignarCargo()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cedula</mat-label>
+      <input matInput formControlName="cedula" [inputMask]="cedulaMask" placeholder="___.______._" (keypress)="GetDataFromCedula($event)">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input  matInput formControlName="nombre">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput formControlName="apellido">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Sexo</mat-label>
+      <input matInput formControlName="sexo">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="asignarForm.invalid">Asignar</button>
+
+  </form>
+
+</div>

@@ -55,7 +55,8 @@ allPost$ = merge(this.postsWithCategories$,this.postCRUDAction$.pipe(
 ).pipe(
   scan((posts,value) =>{
     return this.modifyPosts(posts,value)
-  }, [] as IPost[])
+  }, [] as IPost[]),
+  shareReplay(1)
 )
 
 modifyPosts(posts:IPost[],value:IPost[] | CRUDAction<IPost>){
@@ -75,7 +76,12 @@ addPost(post:IPost){
 
 savePost(postAction:CRUDAction<IPost>){
   if(postAction.action == 'add'){
-  return this.addPostToServer(postAction.data);
+  return this.addPostToServer(postAction.data).pipe(concatMap(post => this.categoryService.categories$.pipe(map(categories => {
+    return {
+      ...post,
+      categoryName:categories.find(category => category.id == post.categoryId)?.title
+    }
+  }))));
   }
 
   return of(postAction.data);
@@ -94,7 +100,7 @@ addPostToServer(post:IPost){
 private selectedPostSubject = new BehaviorSubject<string>('0');
 selectedPostSubjectAction$ = this.selectedPostSubject.asObservable();
 
-post$ = combineLatest([this.postsWithCategories$,this.selectedPostSubjectAction$]).pipe(map(([posts,selectedPostId])=>{
+post$ = combineLatest([this.allPost$,this.selectedPostSubjectAction$]).pipe(map(([posts,selectedPostId])=>{
   return posts.find((post:any) => post.id == selectedPostId);
 }),catchError(this.handleError),shareReplay(1)
 );

@@ -19,6 +19,8 @@ import { SinglePostComponent } from './components/single-post/single-post.compon
 import { LoadingComponent } from './components/loading/loading.component';
 import { AddPostComponent } from './components/add-post/add-post.component';
 import { RegistroPreIndexComponent } from './pages/registro-pre-index/registro-pre-index.component';
+import { AsignarCargosComponent } from './components/asignar-cargos/asignar-cargos.component';
+import { InputMaskModule } from '@ngneat/input-mask';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { RegistroPreIndexComponent } from './pages/registro-pre-index/registro-p
     LoadingComponent,
     AddPostComponent,
     RegistroPreIndexComponent,
+    AsignarCargosComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { RegistroPreIndexComponent } from './pages/registro-pre-index/registro-p
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputMaskModule.forRoot({ inputSelector: 'input', isAsync: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
