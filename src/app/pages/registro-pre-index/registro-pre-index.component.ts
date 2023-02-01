@@ -22,16 +22,17 @@ export class RegistroPreIndexComponent implements OnInit{
 
   procedencia$ = this.registroPreService.procedencia$;
   cargo$ = this.registroPreService.cargos$;
-  cargosConPersonas$ = this.registroPreService.cargosConPersonas$;
 
   ngOnInit(): void {
+
+
   }
 
   displayedColumns: string[] = ['acciones','provincia', 'municipio', 'circunscripcion', 'distritoMunicipal'];
   dataSource:any = this.procedencia$;
 
 
-  displayedColumnsDetails: string[] = ['cargo'];
+  displayedColumnsDetails: string[] = ['cargo','cedula','nombre','apellido','sexo','acciones'];
   dataSourceDetails:any = this.cargo$;
 
   toggleRow(element: { expanded: boolean; }) {

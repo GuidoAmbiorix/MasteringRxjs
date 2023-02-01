@@ -1,15 +1,11 @@
 table {
-  width: 100%;
+margin: 0rem;
 }
-
 
 h2{
   margin: 1rem;
 }
 
-table {
-  width: 100%;
-}
 
 .example-detail-row {
   height: 0;
@@ -18,13 +14,21 @@ table {
 .example-element-row td {
   border-bottom-width: 0;
 }
+.element-header{
+  background-color:rgb(241, 240, 240)
+}
+
+
+.element-detail-header{
+  background-color:rgb(241, 240, 240)
+}
+
+.element-detail-row{
+  background-color:rgb(252, 252, 252)
+}
 
 .example-element-detail {
   overflow: hidden;
   display: flex;
-}
-
-.detail-table {
-  background: #b7b7b773;
-  text-align: center;
+margin: 1rem;
 }

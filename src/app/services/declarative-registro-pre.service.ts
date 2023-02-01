@@ -3,7 +3,7 @@ import { Persona } from './../interfaces/persona';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cargo } from '../interfaces/cargo';
-import { map, merge, scan, shareReplay } from 'rxjs';
+import { map, merge, scan, shareReplay, mergeMap, interval, combineLatest, concatAll } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +24,6 @@ export class DeclarativeRegistroPreService {
     shareReplay()
   );
 
-cargosConPersonas$ = merge([this.cargos$,this.personas$]).pipe(
 
-);
 
 }
