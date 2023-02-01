@@ -40,10 +40,56 @@
   <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
     <div class="example-element-detail" [@detailExpand]="element.expanded ? 'expanded' : 'collapsed'" >
       <table mat-table [dataSource]="dataSourceDetails">
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumnsDetails">
-          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-          </ng-container>
+
+
+  <!-- Provincia Column -->
+  <ng-container matColumnDef="cargo">
+    <th mat-header-cell *matHeaderCellDef> Cargo </th>
+    <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
+  </ng-container>
+
+  <!-- Municipio Column -->
+  <ng-container matColumnDef="cedula">
+    <th mat-header-cell *matHeaderCellDef> Cedula </th>
+    <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+  </ng-container>
+
+  <!-- Circunscripcion Column -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+  </ng-container>
+
+  <!-- Distrito Municipal Column -->
+  <ng-container matColumnDef="apellido">
+    <th mat-header-cell *matHeaderCellDef> Apellido </th>
+    <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+  </ng-container>
+
+    <!-- Distrito Municipal Column -->
+    <ng-container matColumnDef="sexo">
+      <th mat-header-cell *matHeaderCellDef> Sexo </th>
+      <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
+    </ng-container>
+
+             <!-- Actions Column -->
+<ng-container matColumnDef="acciones">
+  <th mat-header-cell *matHeaderCellDef > Acciones </th>
+  <td mat-cell *matCellDef="let element">
+    <div class="buttons">
+      <button mat-mini-fab>
+        <mat-icon>reorder</mat-icon>
+      </button>
+      <button mat-mini-fab>
+        <mat-icon>sensor_occupied</mat-icon>
+      </button>
+      <button mat-mini-fab>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+  </td>
+</ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumnsDetails"  class="element-detail-header"></tr>
           <tr mat-row *matRowDef="let myRowData; columns: displayedColumnsDetails" class="element-detail-row"></tr>
